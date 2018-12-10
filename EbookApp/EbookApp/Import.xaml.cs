@@ -96,39 +96,46 @@ namespace EbookApp
                     }
                     else
                     {
-                        try
-                        {
-                            // Getting text content from pdf, word and text file.                    
-                            var filepath = file.Path;
-                            string word = ConvertText.TextFile(filepath); // By default is text.
+                        //try
+                        //{
+                        //    // Getting text content from pdf, word and text file.                    
+                        //    var filepath = file.Path;
+                        //    string word = string.Empty;
 
-                            if (filepath.Contains(".pdf")) // if the file type is pdf.
-                            {
-                                word = xamHelper.PDTtoText(filepath);
-                            }
+                        //    if (filepath.Contains(".txt"))
+                        //    {
+                        //        word = ConvertText.TextFile(filepath); // By default is text.
+                        //    }
+                        //    else if (filepath.Contains(".pdf")) // if the file type is pdf.
+                        //    {
+                        //        word = xamHelper.PDTtoText(filepath);
+                        //    }
+                        //    else if (filepath.Contains(".docx") || filepath.Contains(".doc")) // if the file type is word document.
+                        //    {
+                        //        word = xamHelper.WordToText(filepath);
+                        //    }
 
-                            if (filepath.Contains(".docx") || filepath.Contains(".doc")) // if the file type is word document.
-                            {
-                                word = xamHelper.WordToText(filepath);
-                            }
+                        //    copyFile = await PCLHelper.CopyFileTo(file, folder);
 
-                            copyFile = await PCLHelper.CopyFileTo(file, folder);
+                        //}
+                        //catch (Exception ex)
+                        //{
+                        //    await DisplayAlert("Error:", "Please try again to upload a valid file. The file must not contain images and any special symbols.", "OK");
+                        //    ex.ToString();
+                        //    lblFilePath.Text = string.Empty;
 
-                        }
-                        catch (Exception ex)
-                        {
-                            await DisplayAlert("Error:", "Please try again to upload a valid file. The file must not contain images and any special symbols.", "OK");
-                            ex.ToString();
-                            lblFilePath.Text = string.Empty;
+                        //}
 
-                        }
+                        copyFile = await PCLHelper.CopyFileTo(file, folder);
+
                     }
-                    
+
                     if (copyFile)
                     {
                         await DisplayAlert("Success", "Import file successfully!", "OK");
                         fileData = new FileData();
                         Genre.SelectedIndex = -1;
+                        lblFilePath.Text = string.Empty;
                     }
 
                 }
