@@ -18,7 +18,7 @@ using EbookApp;
 [assembly: Xamarin.Forms.Dependency(typeof(SpeechToTextImplementation))]
 
 namespace EBookApp.Droid
-{    
+{
     public class SpeechToTextImplementation : ISpeechToText
     {
         private readonly int VOICE = 10;
@@ -27,7 +27,7 @@ namespace EBookApp.Droid
         {
             _activity = CrossCurrentActivity.Current.Activity;
 
-        } 
+        }
         public void StartSpeechToText()
         {
             StartRecordingAndRecognizing();
@@ -41,8 +41,7 @@ namespace EBookApp.Droid
                 var voiceIntent = new Intent(RecognizerIntent.ActionRecognizeSpeech);
                 voiceIntent.PutExtra(RecognizerIntent.ExtraLanguageModel, RecognizerIntent.LanguageModelFreeForm);
                 voiceIntent.PutExtra(RecognizerIntent.ExtraPrompt, "Speak now");
-
-
+                 
                 voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputCompleteSilenceLengthMillis, 1500);
                 voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputPossiblyCompleteSilenceLengthMillis, 1500);
                 voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, 15000);
@@ -59,7 +58,7 @@ namespace EBookApp.Droid
 
         public void StopSpeechToText()
         {
-            
+
         }
     }
 }

@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:EbookApp"
              x:Class="EbookApp.Main" BackgroundImage="lat.jpg">
-
-         <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 
             <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0" Margin="10,10">
                 <Grid.RowDefinitions>
@@ -17,18 +17,19 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
 
                 </Grid.ColumnDefinitions>
 
                 <Label Text="E-KWENTO"
                     Grid.Row="0"
-                    Grid.ColumnSpan="4"                    
+                    Grid.ColumnSpan="5"                    
                     FontSize="30"
                     FontAttributes="Bold"
                     TextColor="DeepSkyBlue"
                     HorizontalOptions="Center" />
 
-                <ScrollView Grid.Row="1" Grid.ColumnSpan="4">
+                <ScrollView Grid.Row="1" Grid.ColumnSpan="5">
                     <ListView x:Name="lst" 
                               ItemSelected="lst_ItemSelected" 
                               SelectionMode="Single"
@@ -41,10 +42,22 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </ScrollView>
-
+ 
                 <Button  
                     Grid.Row="2"
                     Grid.Column="1"   
+                    Image="Voice.png"
+                    Clicked="Speak_Clicked"  
+                    x:Name="SpeakBtn"
+                    Margin="10,10" 
+                    BackgroundColor="Transparent"                          
+                    HorizontalOptions="Fill"  
+                    VerticalOptions="Center"
+                    CornerRadius="10"/>
+ 
+                <Button  
+                    Grid.Row="2"
+                    Grid.Column="2"   
                     Image="ImportFile.png"
                     Clicked="Import_Clicked"  
                     Margin="10,10" 
@@ -55,7 +68,7 @@
 
                 <Button  
                     Grid.Row="2"
-                    Grid.Column="2"
+                    Grid.Column="3"
                     x:Name="SettingsBtn" 
                     Image="Settings.png"
                     Clicked="Settings_Clicked" 
@@ -67,13 +80,6 @@
 
             </Grid>
 
-
-
-
-
-
-
-        </StackLayout> 
-    
-    
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

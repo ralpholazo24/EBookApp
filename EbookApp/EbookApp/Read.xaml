@@ -19,28 +19,32 @@
                     FontSize="30"
                     FontAttributes="Bold"
                     HorizontalOptions="Center" />
- 
+
 
                 <ScrollView Grid.Row="1">
-                    <ListView x:Name="lst" ItemSelected="lst_ItemSelected" SelectionMode="Single">
+                    <ListView x:Name="lst" 
+                              ItemSelected="lst_ItemSelected" 
+                              SelectionMode="Single"                              
+                              VerticalOptions="FillAndExpand" 
+                              HorizontalOptions="FillAndExpand">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell>
+                                <!--<ViewCell>
                                     <StackLayout>
                                         
                                         <Grid x:Name="GridTasks">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="1*" />
                                                 <ColumnDefinition Width="1*" />
-                                            </Grid.ColumnDefinitions>
+                                            </Grid.ColumnDefinitions>-->
 
-                                            <Label x:Name="FileName" Grid.Column="0" Text="{Binding fileName}" TextColor="Black" />
-                                            
-                                            
-                                            
-                                        </Grid>
+                                <TextCell x:Name="FileName" Text="{Binding fileName}" TextColor="Black" />
+
+
+
+                                <!--</Grid>
                                     </StackLayout>
-                                </ViewCell>
+                                </ViewCell>-->
 
 
                             </DataTemplate>

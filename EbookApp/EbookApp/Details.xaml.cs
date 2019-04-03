@@ -4,7 +4,6 @@ using Plugin.TextToSpeech;
 using Plugin.TextToSpeech.Abstractions;
 using System;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -23,10 +22,8 @@ namespace EbookApp
         listItems document;
         private ISpeechToText _speechRecongnitionInstance;
 
-        public ICommand SpeakCommand { get; set; }
-        
-            
-
+        private ICommand SpeakCommand { get; set; }
+         
         public Details(listItems element)
         {
             try
@@ -97,23 +94,16 @@ namespace EbookApp
                 }
 
                 Title.Text = element.fileName.Replace(".pdf", "").Replace(".txt", "").Replace(".docx", "");
-
-
-                if (!string.IsNullOrWhiteSpace(Regex.Replace(word, @"([\p{L}\p{Nd}]+)", "")))
-                {                  
-                    Content.Text = "Invalid file.";
-                }
-                else
-                {
-                    Content.Text = word; // displaying text content in screen.
-
-                }
+                Content.Text = word; // displaying text content in screen.
 
             }
             catch (Exception ex)
             {
                 DisplayAlert("", ex.Message, "OK");
-            } 
+            }
+            finally
+            {
+            }
 
         }
 

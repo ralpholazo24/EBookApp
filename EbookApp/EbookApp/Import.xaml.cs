@@ -14,7 +14,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
 
-
 namespace EbookApp
 {
 
@@ -27,7 +26,17 @@ namespace EbookApp
 
         public Import()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            // Intialization of voice recognition.
+            try
+            {
+                xamHelper = DependencyService.Get<IXamHelper>();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
+
         }
 
         private async void Choose_Clicked(object sender, EventArgs e)
@@ -96,46 +105,41 @@ namespace EbookApp
                     }
                     else
                     {
-                        //try
-                        //{
-                        //    // Getting text content from pdf, word and text file.                    
-                        //    var filepath = file.Path;
-                        //    string word = string.Empty;
+                        try
+                        {
+                            // Getting text content from pdf, word and text file.                    
+                            var filepath = file.Path;
+                            string word = ConvertText.TextFile(filepath); // By default is text.
 
-                        //    if (filepath.Contains(".txt"))
-                        //    {
-                        //        word = ConvertText.TextFile(filepath); // By default is text.
-                        //    }
-                        //    else if (filepath.Contains(".pdf")) // if the file type is pdf.
-                        //    {
-                        //        word = xamHelper.PDTtoText(filepath);
-                        //    }
-                        //    else if (filepath.Contains(".docx") || filepath.Contains(".doc")) // if the file type is word document.
-                        //    {
-                        //        word = xamHelper.WordToText(filepath);
-                        //    }
+                            if (filepath.Contains(".pdf")) // if the file type is pdf.
+                            {
+                                word = xamHelper.PDTtoText(filepath);
+                            }
 
-                        //    copyFile = await PCLHelper.CopyFileTo(file, folder);
+                            if (filepath.Contains(".docx") || filepath.Contains(".doc")) // if the file type is word document.
+                            {
+                                word = xamHelper.WordToText(filepath);
+                            }
 
-                        //}
-                        //catch (Exception ex)
-                        //{
-                        //    await DisplayAlert("Error:", "Please try again to upload a valid file. The file must not contain images and any special symbols.", "OK");
-                        //    ex.ToString();
-                        //    lblFilePath.Text = string.Empty;
+                            copyFile = await PCLHelper.CopyFileTo(file, folder);
 
-                        //}
+                        }
+                        catch (Exception ex)
+                        {
+                            await DisplayAlert("Error:", "Please try again to upload a valid file. The file must not contain images and any special symbols.", "OK");
+                            ex.ToString();
+                            lblFilePath.Text = string.Empty;
 
-                        copyFile = await PCLHelper.CopyFileTo(file, folder);
-
+                        }
                     }
-
+                    
                     if (copyFile)
                     {
                         await DisplayAlert("Success", "Import file successfully!", "OK");
                         fileData = new FileData();
                         Genre.SelectedIndex = -1;
                         lblFilePath.Text = string.Empty;
+
                     }
 
                 }
@@ -144,6 +148,7 @@ namespace EbookApp
             }
             catch (Exception ex)
             {
+                lblFilePath.Text = string.Empty;
                 await DisplayAlert("Error", ex.ToString(), "OK");
                 return;
             }

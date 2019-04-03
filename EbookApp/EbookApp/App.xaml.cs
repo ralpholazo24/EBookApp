@@ -10,20 +10,12 @@ namespace EbookApp
 		public App ()
 		{
 			InitializeComponent();
-
-
-            if (Application.Current.Properties.ContainsKey("crossLocale"))
+             
+            if (!Application.Current.Properties.ContainsKey("crossLocale"))
             {
                 Application.Current.Properties["crossLocale"] = "Default Language";
             }
-
-            //var lang = Application.Current.Properties["crossLocale"].ToString();
-
-            //if (lang == string.Empty)
-            //{
-            //    Application.Current.Properties["crossLocale"] = "Default Language";
-            //}
-
+             
             MainPage = new NavigationPage(new SplashScreen());
         }
 

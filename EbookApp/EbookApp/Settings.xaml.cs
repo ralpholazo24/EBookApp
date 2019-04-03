@@ -25,14 +25,15 @@ namespace EbookApp
                 lblLanguage.Text = Application.Current.Properties["crossLocale"].ToString();
             }
         }
-        
-
+         
         private async void Choose_Clicked(object sender, EventArgs e)
         {
-            var items = await CrossTextToSpeech.Current.GetInstalledLanguages();
-            var result = await DisplayActionSheet("Pick", "", null, items.Select(i => i.DisplayName).ToArray());
+            var items = await CrossTextToSpeech.Current.GetInstalledLanguages(); // Getting all the languages available to the cross text to speech nuget package.
+            var languageList = items.Where(i => i.DisplayName.Contains("Filipino") || i.DisplayName.Contains("English")).Select(i => i.DisplayName).ToArray(); // Limit the language to filipino and english
+             
+            var result = await DisplayActionSheet("Pick", "", null, languageList);
             lang = items.FirstOrDefault(i => i.DisplayName == result);
-            lblLanguage.Text = (result == "OK" || string.IsNullOrEmpty(result)) ? "Default Language" : result;
+            lblLanguage.Text = (result == "OK" || string.IsNullOrEmpty(result)) ? "Default Language" : result; 
             
             Application.Current.Properties["crossLocale"] = lblLanguage.Text;
         }
