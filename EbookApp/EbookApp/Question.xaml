@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EbookApp.Question">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+ 
+            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0" Margin="10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/> 
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+ 
+                <Label  
+                    Grid.Row="0"   
+                    Text="1. Ano ang pamagat ng kwento? ( What is the title of the story ) "/>
+
+                <Editor Grid.Row="1" x:Name="QOne" Text="{Binding QOne}">
+                </Editor>
+                
+                <Label  
+                    Grid.Row="2"   
+                    Text="2. Sino ang pangunahing tauhan sa kwento? ( Who is the main character in the story ) "/>
+
+                <Editor Grid.Row="3" x:Name="QTwo" Text="{Binding QTwo}">
+                </Editor>
+ 
+                <Label  
+                    Grid.Row="4"   
+                    Text="3. Saan ang tagpuan ng kwento? ( Where is the settings of the story ) "/>
+
+                <Editor Grid.Row="5" x:Name="QThree" Text="{Binding QThree}">
+                </Editor>
+
+                <Button
+                    Grid.Row="6"
+                    Text="Submit"
+                    Clicked="Submit_Clicked">
+                </Button>
+ 
+            </Grid>
+ 
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

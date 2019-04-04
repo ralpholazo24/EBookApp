@@ -93,18 +93,17 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/> 
                 </Grid.ColumnDefinitions>
 
                 <Label x:Name="Title"
                     Grid.Row="0"
-                    Grid.ColumnSpan="5"                    
+                    Grid.ColumnSpan="4"                    
                     FontSize="30"
                     FontAttributes="Bold"
                     HorizontalOptions="Center" />
 
-                <ScrollView Grid.Row="1" Grid.ColumnSpan="5">
+                <ScrollView Grid.Row="1" Grid.ColumnSpan="4">
                     <Label x:Name="Content"
                     VerticalOptions="FillAndExpand" 
                     HorizontalOptions="FillAndExpand" />
@@ -116,7 +115,7 @@
                     x:Name="SpeakBtn"
                     Image="Voice.png"
                     Grid.Row="2" 
-                    Grid.Column="1"                                       
+                    Grid.Column="0"                                       
                     Margin="10,10" 
                     BackgroundColor="Transparent"                          
                     HorizontalOptions="Fill"  
@@ -128,7 +127,7 @@
                     x:Name="PlayBtn"
                     Image="Play.png"
                     Grid.Row="2" 
-                    Grid.Column="2"                                       
+                    Grid.Column="1"                                       
                     Margin="10,10" 
                     BackgroundColor="Transparent"                          
                     HorizontalOptions="Fill"  
@@ -136,7 +135,7 @@
                     CornerRadius="10"/>
 
                 <Button Grid.Row="2" 
-                    Grid.Column="3"  
+                    Grid.Column="2"  
                     x:Name="DeleteBtn"  
                     Image="Delete.png"   
                     Clicked="Delete_Clicked"
@@ -147,7 +146,18 @@
                     VerticalOptions="Center"
                     CornerRadius="10"/>
  
-
+                 <Button Grid.Row="2" 
+                    Grid.Column="3"  
+                    x:Name="QuestionBtn"  
+                    Image="Question.png"   
+                    Clicked="Question_Clicked"
+                    Margin="10,10"
+                    TextColor="White"  
+                    BackgroundColor="Transparent"                         
+                    HorizontalOptions="Fill"  
+                    VerticalOptions="Center"
+                    CornerRadius="10"/>
+ 
             </Grid>
 
         </StackLayout>

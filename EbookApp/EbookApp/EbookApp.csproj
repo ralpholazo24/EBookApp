@@ -8,8 +8,14 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="PCLStorage" Version="1.0.2" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
     <PackageReference Include="Xam.Plugins.TextToSpeech" Version="4.0.0.7" />
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
     <PackageReference Include="Xamarin.Plugin.FilePicker" Version="1.2.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Question.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

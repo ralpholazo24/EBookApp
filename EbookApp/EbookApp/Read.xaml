@@ -4,9 +4,7 @@
              x:Class="EbookApp.Read" BackgroundImage="lat.jpg">
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-
-
-
+ 
             <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0" Margin="10,10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

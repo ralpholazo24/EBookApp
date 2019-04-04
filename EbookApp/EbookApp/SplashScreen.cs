@@ -37,10 +37,9 @@ namespace EbookApp
             base.OnAppearing();
 
             await SplashImage.ScaleTo(1, 2000);
-            await SplashImage.ScaleTo(0.9, 1500, Easing.Linear);
-            await SplashImage.ScaleTo(150, 1200, Easing.Linear);
-            Application.Current.MainPage = new Main();
-            //await Navigation.PushAsync(new Main(),false);
+            //await SplashImage.ScaleTo(0.9, 1500, Easing.Linear);
+            //await SplashImage.ScaleTo(150, 1200, Easing.Linear);
+            Application.Current.MainPage = new Main(); 
 
         }
 

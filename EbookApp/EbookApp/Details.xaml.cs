@@ -1,5 +1,6 @@
 ﻿
 
+using EbookApp.Model;
 using Plugin.TextToSpeech;
 using Plugin.TextToSpeech.Abstractions;
 using System;
@@ -34,6 +35,7 @@ namespace EbookApp
 
                 document = element;
                 lbl.Text = element.fileName;
+                
    
                 // Intialization of voice recognition.
                 try
@@ -255,6 +257,14 @@ namespace EbookApp
             {
                 DisplayAlert("", ex.Message, "OK");
             }
+        }
+
+        async void Question_Clicked(object sender, EventArgs e)
+        {
+            QuestionItem questionItem = await App.Database.GetItemAsync(document.genre, Title.Text);
+
+            await Navigation.PushModalAsync(new Question(questionItem)); // Use to navigate question
+             
         }
 
         protected override void OnDisappearing()
