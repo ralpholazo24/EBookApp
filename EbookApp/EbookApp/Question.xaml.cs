@@ -16,11 +16,11 @@ namespace EbookApp
         public Question(QuestionItem questionItem)
         {
             InitializeComponent();
-             
+
             QOne.Text = questionItem.QOne;
             QTwo.Text = questionItem.QTwo;
             QThree.Text = questionItem.QThree;
-             
+
             BindingContext = new QuestionItem
             {
                 ID = questionItem.ID,
@@ -33,12 +33,22 @@ namespace EbookApp
 
 
         }
-         
+
         private async void Submit_Clicked(object sender, EventArgs e)
-        { 
-            var item = (QuestionItem)BindingContext;             
-            await App.Database.SaveItemAsync(item);
-            await Navigation.PopModalAsync();
+        {
+            var item = (QuestionItem)BindingContext;
+
+
+            if (item.QOne == string.Empty && item.QTwo == string.Empty && item.QThree == string.Empty)
+            {
+                await DisplayAlert("Error", "Empty field is not allowed", "OK");
+            }
+            else
+            {
+                await DisplayAlert("Success", "Record saved!", "OK");
+                await App.Database.SaveItemAsync(item);
+                await Navigation.PopModalAsync();
+            }
         }
 
     }

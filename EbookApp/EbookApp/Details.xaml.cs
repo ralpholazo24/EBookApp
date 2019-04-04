@@ -196,8 +196,17 @@ namespace EbookApp
 
             if (isDelete)
             {
+                QuestionItem questionItem = await App.Database.GetItemAsync(document.genre, Title.Text);
+
+                if (questionItem != null)
+                {
+                    await App.Database.DeleteItemAsync(questionItem);
+                }
+                 
+                await DisplayAlert("", "Deleted successfully!", "OK");
+
                 await document.file.DeleteAsync();
-                await Navigation.PopAsync();
+                await Navigation.PopModalAsync();
             }
         }
 
@@ -263,6 +272,15 @@ namespace EbookApp
         {
             QuestionItem questionItem = await App.Database.GetItemAsync(document.genre, Title.Text);
 
+            if (questionItem == null)
+            {
+                questionItem = new QuestionItem
+                {  
+                    Genre = document.genre,
+                    Title = Title.Text
+                };
+            }
+             
             await Navigation.PushModalAsync(new Question(questionItem)); // Use to navigate question
              
         }
