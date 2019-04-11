@@ -16,13 +16,12 @@ namespace EbookApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Details : ContentPage
     {
-        public CancellationTokenSource cancelSrc;
+        private CancellationTokenSource cancelSrc;
         private IXamHelper xamHelper;
         public string word = string.Empty;
         CrossLocale? lang = null;
         listItems document;
         private ISpeechToText _speechRecongnitionInstance;
-
         private ICommand SpeakCommand { get; set; }
          
         public Details(listItems element)
@@ -30,7 +29,7 @@ namespace EbookApp
             try
             {
                 InitializeComponent();
-
+                 
                 CrossTextToSpeech.Current.MaxSpeechInputLength.Equals(-1);
 
                 document = element;
@@ -46,10 +45,10 @@ namespace EbookApp
                 {
                     ex.ToString();
                 }
-
+                 
                 MessagingCenter.Subscribe<ISpeechToText, string>(this, "STT", (sender, args) =>
                 {
-                    SpeechToTextFinalResultRecieved(args);
+                    SpeechToTextFinalResultRecieved(args);                    
                 });
 
                 MessagingCenter.Subscribe<ISpeechToText>(this, "Final", (sender) =>
@@ -59,7 +58,7 @@ namespace EbookApp
 
                 MessagingCenter.Subscribe<IMessageSender, string>(this, "STT", (sender, args) =>
                 {
-                    SpeechToTextFinalResultRecieved(args);
+                    SpeechToTextFinalResultRecieved(args);                    
                 });
 
 
@@ -123,6 +122,7 @@ namespace EbookApp
                 catch (OperationCanceledException)
                 {
                     PlayBtn.Image = "Play.png";
+                    cancelSrc = null;
                 }
                 catch (Exception ex)
                 {
@@ -153,9 +153,7 @@ namespace EbookApp
                         //    vol = (float)volumeSlider.Value;
 
                         await CrossTextToSpeech.Current.Speak(word, lang, volume: vol, cancelToken: cancelSrc.Token);
-
-
-
+                         
                         cancelSrc = null;
                     }
                     else
@@ -166,6 +164,7 @@ namespace EbookApp
                 catch (OperationCanceledException)
                 {
                     PlayBtn.Image = "Play.png";
+                    cancelSrc = null;
                 }
                 catch (Exception ex)
                 {
@@ -190,7 +189,7 @@ namespace EbookApp
             }
         }
 
-        public async Task Delete_Clicked(object sender, EventArgs e)
+        private async Task Delete_Clicked(object sender, EventArgs e)
         {
             bool isDelete = await DisplayAlert("Delete:", "Are you sure you want to delete this document?", "Yes", "No");
 
@@ -210,7 +209,7 @@ namespace EbookApp
             }
         }
 
-        public async void Read_Clicked(object sender, EventArgs e)
+        private async void Read_Clicked(object sender, EventArgs e)
         {
             PlayBtn.Image = "Stop.png";
 
@@ -243,6 +242,7 @@ namespace EbookApp
             catch (OperationCanceledException)
             {
                 PlayBtn.Image = "Play.png";
+                cancelSrc = null;
             }
             catch (Exception ex)
             {
@@ -261,6 +261,11 @@ namespace EbookApp
             try
             {
                 _speechRecongnitionInstance.StartSpeechToText();
+
+                if (cancelSrc != null)
+                {
+                    cancelSrc.Cancel();
+                }
             }
             catch (Exception ex)
             {
@@ -277,7 +282,10 @@ namespace EbookApp
                 questionItem = new QuestionItem
                 {  
                     Genre = document.genre,
-                    Title = Title.Text
+                    Title = Title.Text,
+                    QOne = string.Empty,
+                    QTwo = string.Empty,
+                    QThree = string.Empty
                 };
             }
              

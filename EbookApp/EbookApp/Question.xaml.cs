@@ -21,7 +21,7 @@ namespace EbookApp
             QTwo.Text = questionItem.QTwo;
             QThree.Text = questionItem.QThree;
 
-            BindingContext = new QuestionItem
+            BindingContext = new QuestionItem // Binding data for the question item object
             {
                 ID = questionItem.ID,
                 Genre = questionItem.Genre,
@@ -37,9 +37,8 @@ namespace EbookApp
         private async void Submit_Clicked(object sender, EventArgs e)
         {
             var item = (QuestionItem)BindingContext;
-
-
-            if (item.QOne == string.Empty && item.QTwo == string.Empty && item.QThree == string.Empty)
+             
+            if (item.QOne == string.Empty && item.QTwo == string.Empty && item.QThree == string.Empty) // validation upon submitting answers
             {
                 await DisplayAlert("Error", "Empty field is not allowed", "OK");
             }

@@ -17,19 +17,18 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-
+ 
                 </Grid.ColumnDefinitions>
 
                 <Label Text="E-KWENTO"
                     Grid.Row="0"
-                    Grid.ColumnSpan="5"                    
+                    Grid.ColumnSpan="4"                    
                     FontSize="30"
                     FontAttributes="Bold"
                     TextColor="DeepSkyBlue"
                     HorizontalOptions="Center" />
 
-                <ScrollView Grid.Row="1" Grid.ColumnSpan="5">
+                <ScrollView Grid.Row="1" Grid.ColumnSpan="4">
                     <ListView x:Name="lst" 
                               ItemSelected="lst_ItemSelected" 
                               SelectionMode="Single"
@@ -45,7 +44,7 @@
  
                 <Button  
                     Grid.Row="2"
-                    Grid.Column="1"   
+                    Grid.Column="0"   
                     Image="Voice.png"
                     Clicked="Speak_Clicked"  
                     x:Name="SpeakBtn"
@@ -57,9 +56,21 @@
  
                 <Button  
                     Grid.Row="2"
-                    Grid.Column="2"   
+                    Grid.Column="1"   
                     Image="ImportFile.png"
                     Clicked="Import_Clicked"  
+                    Margin="10,10" 
+                    BackgroundColor="Transparent"                          
+                    HorizontalOptions="Fill"  
+                    VerticalOptions="Center"
+                    CornerRadius="10"/>
+
+                <Button  
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    x:Name="BrowserBtn" 
+                    Image="Browser.png"
+                    Clicked="Browser_Clicked" 
                     Margin="10,10" 
                     BackgroundColor="Transparent"                          
                     HorizontalOptions="Fill"  
@@ -78,6 +89,7 @@
                     VerticalOptions="Center"
                     CornerRadius="10"/>
 
+                
             </Grid>
 
         </StackLayout>

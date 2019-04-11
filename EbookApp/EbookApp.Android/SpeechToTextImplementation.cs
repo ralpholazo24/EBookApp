@@ -29,7 +29,7 @@ namespace EBookApp.Droid
 
         }
         public void StartSpeechToText()
-        {
+        { 
             StartRecordingAndRecognizing();
         }
 
@@ -54,8 +54,7 @@ namespace EBookApp.Droid
                 throw new Exception("No mic found");
             }
         }
-
-
+         
         public void StopSpeechToText()
         {
 

@@ -14,9 +14,10 @@ namespace EbookApp
 {
     //[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Main : ContentPage
-    { 
-        public CancellationTokenSource cancelSrc;
-        private ISpeechToText _searchRecongnitionInstance;
+    {
+
+        public CancellationTokenSource cts;
+        private ISpeechToText _voiceCommand;
         private ICommand SpeakCommand { get; set; }
          
         public Main()
@@ -26,12 +27,13 @@ namespace EbookApp
             // Intialization of voice recognition.
             try
             {
-                _searchRecongnitionInstance = DependencyService.Get<ISpeechToText>();
+                _voiceCommand = DependencyService.Get<ISpeechToText>();
             }
             catch (Exception ex)
             {
                 ex.ToString();
             }
+
 
             MessagingCenter.Subscribe<ISpeechToText, string>(this, "STT", (sender, args) =>
             {
@@ -45,7 +47,7 @@ namespace EbookApp
 
             MessagingCenter.Subscribe<IMessageSender, string>(this, "STT", (sender, args) =>
             {
-                SearchStory(args);
+                SearchStory(args); 
             });
              
             LoadItems();
@@ -105,22 +107,25 @@ namespace EbookApp
             // command for voice recognition.
             try
             {
-                _searchRecongnitionInstance.StartSpeechToText();
+                _voiceCommand.StartSpeechToText();
             }
             catch (Exception ex)
             {
                 DisplayAlert("", ex.Message, "OK");
             }
         }
-
-
+         
+        private void Browser_Clicked(object sender, EventArgs e)
+        { 
+             
+        }
+         
         private async void SearchStory(string args)
         { 
             try
             {
-                var story = args.Replace("read ", ""); // keyword for searching
-
-
+                var story = args;
+                 
                 IFolder folder = FileSystem.Current.LocalStorage; // Access to the local directory of the app
 
                 IFolder rootFolder = await FileSystem.Current.GetFolderFromPathAsync(folder.Path);
@@ -159,7 +164,7 @@ namespace EbookApp
             }
             catch (OperationCanceledException)
             {
-                //PlayBtn.Image = "Play.png";
+                cts = null;
             }
             catch (Exception ex)
             {
@@ -167,31 +172,24 @@ namespace EbookApp
             }
             finally
             {
-                //PlayBtn.Image = "Play.png";
-                cancelSrc = null;
+                 cts = null;
+            }
+
+        }
+
+
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            if (cts != null)
+            {
+                cts.Cancel();
             }
 
         }
     }
-
-
-
-    //protected override bool OnBackButtonPressed()
-    //{
-    //    Device.BeginInvokeOnMainThread(async () =>
-    //    {
-    //        var result = await this.DisplayAlert("Alert!", "Do you really want to exit?", "Yes", "No");
-
-    //        if (!result)
-    //        {
-    //            base.OnBackButtonPressed();
-    //            await this.Navigation.PopAsync();
-    //        }                    
-
-    //    });
-
-    //    return true;            
-    //}
-
-
+     
+     
 }
