@@ -229,9 +229,7 @@ namespace EbookApp
                     //    vol = (float)volumeSlider.Value; 
 
                     await CrossTextToSpeech.Current.Speak(word, lang, volume: vol, cancelToken: cancelSrc.Token);
-
-
-
+                     
                     cancelSrc = null;
                 }
                 else
@@ -301,6 +299,9 @@ namespace EbookApp
             {
                 cancelSrc.Cancel();
             }
+
+            word = string.Empty;
+
 
         }
 
