@@ -87,29 +87,30 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" /> 
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/> 
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <Label x:Name="Title"
                     Grid.Row="0"
-                    Grid.ColumnSpan="4"                    
+                    Grid.ColumnSpan="5"                    
                     FontSize="30"
                     FontAttributes="Bold"
                     HorizontalOptions="Center" />
 
-                <ScrollView Grid.Row="1" Grid.ColumnSpan="4">
+                <ScrollView Grid.Row="1" 
+                            Grid.ColumnSpan="5">
                     <Label x:Name="Content"
                     VerticalOptions="FillAndExpand" 
                     HorizontalOptions="FillAndExpand" />
                 </ScrollView>
-
-
+ 
                 <Button                     
                     Clicked="Speak_Clicked"
                     x:Name="SpeakBtn"
@@ -157,7 +158,21 @@
                     HorizontalOptions="Fill"  
                     VerticalOptions="Center"
                     CornerRadius="10"/>
- 
+
+
+                <Button Grid.Row="2" 
+                    Grid.Column="4"      
+                    x:Name="OpenYoutubeBtn"        
+                    Image="Youtube.png"                 
+                    Clicked="OpenYoutube_Clicked"
+                    Margin="10,10"
+                    TextColor="White"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center"
+                    CornerRadius="10"/>
+
+
             </Grid>
 
         </StackLayout>

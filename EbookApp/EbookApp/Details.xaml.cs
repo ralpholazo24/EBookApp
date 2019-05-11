@@ -271,6 +271,14 @@ namespace EbookApp
             }
         }
 
+        private void OpenYoutube_Clicked(object sender, EventArgs e)
+        {
+            string title = Title.Text.Replace(" ","+");
+            string url = $"https://www.youtube.com/results?search_query={title}"; 
+             
+            Device.OpenUri(new Uri(url)); // open youtube link
+        }
+
         async void Question_Clicked(object sender, EventArgs e)
         {
             QuestionItem questionItem = await App.Database.GetItemAsync(document.genre, Title.Text);
