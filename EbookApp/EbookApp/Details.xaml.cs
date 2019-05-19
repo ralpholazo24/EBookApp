@@ -279,6 +279,14 @@ namespace EbookApp
             Device.OpenUri(new Uri(url)); // open youtube link
         }
 
+        private void Search_Clicked(object sender, EventArgs e)
+        {
+            string title = InputSearch.Text.Replace(" ", "+");
+            string url = $"https://www.google.com/search?q={title}";
+
+            Device.OpenUri(new Uri(url)); // open youtube link
+        }
+
         async void Question_Clicked(object sender, EventArgs e)
         {
             QuestionItem questionItem = await App.Database.GetItemAsync(document.genre, Title.Text);
