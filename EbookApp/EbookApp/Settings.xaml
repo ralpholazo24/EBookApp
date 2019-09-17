@@ -13,6 +13,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Label  
@@ -43,6 +45,30 @@
                     TextColor="White"  
                     BackgroundColor="DeepSkyBlue"                          
                     HorizontalOptions="Fill"  
+                    VerticalOptions="Center"
+                    CornerRadius="10"/>
+
+                <Button
+                    Grid.Row="4"
+                    x:Name="btnCopyright"
+                    Text="Copyright" 
+                    Clicked="Copyright_Clicked"                    
+                    FontSize="Small"                    
+                    TextColor="White"  
+                    BackgroundColor="DeepSkyBlue"                          
+                    HorizontalOptions="Fill"  
+                    VerticalOptions="Center"
+                    CornerRadius="10"/>
+
+                <Button
+                    Grid.Row="5" 
+                    x:Name="btnUserGuide"
+                    Text="User Guide" 
+                    Clicked="UserGuide_Clicked"                    
+                    FontSize="Small"
+                    TextColor="White"
+                    BackgroundColor="DeepSkyBlue"
+                    HorizontalOptions="Fill"
                     VerticalOptions="Center"
                     CornerRadius="10"/>
 

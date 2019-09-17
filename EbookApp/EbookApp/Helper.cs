@@ -4,9 +4,21 @@ using System.Text;
 using PCLStorage;
 using System.Threading.Tasks;
 using System.Threading;
+using Xamarin.Forms;
 
 namespace EbookApp
 {
+
+    public static class AnimateButton
+    {
+        public async static void animateButton(Button button)
+        {
+            await button.ScaleTo(1.5, 50, Easing.Linear);
+            await Task.Delay(100);
+            await button.ScaleTo(1, 50, Easing.Linear);
+        }
+    }
+
     public static class PCLHelper
     {
         public async static Task<bool> IsFileExistAsync(this string fileName, IFolder rootFolder = null)

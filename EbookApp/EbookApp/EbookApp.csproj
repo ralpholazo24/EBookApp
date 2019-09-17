@@ -14,7 +14,13 @@
     <PackageReference Include="Xamarin.Plugin.FilePicker" Version="1.2.1" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Copyright.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Question.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UserGuide.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

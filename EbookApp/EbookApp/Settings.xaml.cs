@@ -37,6 +37,19 @@ namespace EbookApp
             
             Application.Current.Properties["crossLocale"] = lblLanguage.Text;
         }
+
+
+        private async void Copyright_Clicked(object sender, EventArgs e)
+        {
+            AnimateButton.animateButton(btnCopyright);
+            await Navigation.PushModalAsync(new Copyright()); // Use to navigate settings
+        }
+
+        private async void UserGuide_Clicked(object sender, EventArgs e)
+        {
+            AnimateButton.animateButton(btnCopyright);
+            await Navigation.PushModalAsync(new UserGuide()); // Use to navigate settings
+        }
     }
 
 

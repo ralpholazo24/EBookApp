@@ -10,6 +10,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
 namespace EbookApp
 {
     //[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -86,14 +87,16 @@ namespace EbookApp
             Navigation.PushModalAsync(new Read(doc.fileName)); // Laman ng selected genre Navigation to view details of the selected item
         }
 
-        void Import_Clicked(object sender, EventArgs e)
+        async void Import_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new Import()); // Use to navigate import page            
+            AnimateButton.animateButton(ImportBtn);
+            await Navigation.PushModalAsync(new Import()); // Use to navigate import page            
         }
 
-        void Settings_Clicked(object sender, EventArgs e)
+        async void Settings_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new Settings()); // Use to navigate settings
+            AnimateButton.animateButton(SettingsBtn);
+            await Navigation.PushModalAsync(new Settings()); // Use to navigate settings
         }
 
         protected override void OnAppearing()
@@ -102,19 +105,22 @@ namespace EbookApp
             LoadItems();
         }
 
-        private void Speak_Clicked(object sender, EventArgs e)
+        private async void Speak_Clicked(object sender, EventArgs e)
         {
             // command for voice recognition.
             try
             {
+                AnimateButton.animateButton(SpeakBtn);
                 _voiceCommand.StartSpeechToText();
             }
             catch (Exception ex)
             {
-                DisplayAlert("", ex.Message, "OK");
+                await DisplayAlert("", ex.Message, "OK");
             }
         }
-         
+
+        
+
         private void Browser_Clicked(object sender, EventArgs e)
         { 
              

@@ -23,7 +23,9 @@ namespace EbookApp
         listItems document;
         private ISpeechToText _speechRecongnitionInstance;
         private ICommand SpeakCommand { get; set; }
-         
+        public float? speakRateSpeed = 0.7f; // Adjust the value to change the spped of the speak rate
+
+
         public Details(listItems element)
         {
             try
@@ -35,7 +37,6 @@ namespace EbookApp
                 document = element;
                 lbl.Text = element.fileName;
                 
-   
                 // Intialization of voice recognition.
                 try
                 {
@@ -94,7 +95,7 @@ namespace EbookApp
                     lbl.Text = ex.Message;
                 }
 
-                Title.Text = element.fileName.Replace(".pdf", "").Replace(".txt", "").Replace(".docx", "");
+                Title.Text = element.fileName.Replace(".pdf", "").Replace(".txt", "").Replace(".docx", "").Replace(".doc", "");
                 Content.Text = word; // displaying text content in screen.
 
             }
@@ -152,7 +153,7 @@ namespace EbookApp
                         //if (volumeSwitch.IsToggled)
                         //    vol = (float)volumeSlider.Value;
 
-                        await CrossTextToSpeech.Current.Speak(word, lang, volume: vol, cancelToken: cancelSrc.Token);
+                        await CrossTextToSpeech.Current.Speak(word, lang, speakRate: speakRateSpeed, volume: vol, cancelToken: cancelSrc.Token);
                          
                         cancelSrc = null;
                     }
@@ -191,6 +192,7 @@ namespace EbookApp
 
         private async Task Delete_Clicked(object sender, EventArgs e)
         {
+            AnimateButton.animateButton(DeleteBtn);
             bool isDelete = await DisplayAlert("Delete:", "Are you sure you want to delete this document?", "Yes", "No");
 
             if (isDelete)
@@ -209,10 +211,10 @@ namespace EbookApp
             }
         }
 
-        private async void Read_Clicked(object sender, EventArgs e)
-        {
+        private async void Play_Clicked(object sender, EventArgs e)
+        {            
             PlayBtn.Image = "Stop.png";
-
+            AnimateButton.animateButton(PlayBtn);
             try
             {
                 if (cancelSrc == null)
@@ -227,9 +229,9 @@ namespace EbookApp
                     float? vol = 100;
                     //if (volumeSwitch.IsToggled)
                     //    vol = (float)volumeSlider.Value; 
+                    
+                    await CrossTextToSpeech.Current.Speak(word, lang, speakRate: speakRateSpeed, volume: vol, cancelToken: cancelSrc.Token);    
 
-                    await CrossTextToSpeech.Current.Speak(word, lang, volume: vol, cancelToken: cancelSrc.Token);
-                     
                     cancelSrc = null;
                 }
                 else
@@ -255,6 +257,7 @@ namespace EbookApp
 
         private void Speak_Clicked(object sender, EventArgs e)
         {
+            AnimateButton.animateButton(SpeakBtn);
             // command for voice recognition.
             try
             {
@@ -273,6 +276,7 @@ namespace EbookApp
 
         private void OpenYoutube_Clicked(object sender, EventArgs e)
         {
+            AnimateButton.animateButton(OpenYoutubeBtn);
             string title = Title.Text.Replace(" ","+");
             string url = $"https://www.youtube.com/results?search_query={title}"; 
              
@@ -289,6 +293,7 @@ namespace EbookApp
 
         async void Question_Clicked(object sender, EventArgs e)
         {
+            AnimateButton.animateButton(QuestionBtn);
             QuestionItem questionItem = await App.Database.GetItemAsync(document.genre, Title.Text);
 
             if (questionItem == null)
@@ -306,6 +311,13 @@ namespace EbookApp
             await Navigation.PushModalAsync(new Question(questionItem)); // Use to navigate question
              
         }
+
+        async void Settings_Clicked(object sender, EventArgs e)
+        {
+            AnimateButton.animateButton(SettingsBtn);
+            await Navigation.PushModalAsync(new Settings()); // Use to navigate settings
+        }
+
 
         protected override void OnDisappearing()
         {

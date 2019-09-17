@@ -17,13 +17,15 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
 
 
                 <Label  
                     Grid.Row="0"
-                    Grid.ColumnSpan="2"   
+                    Grid.ColumnSpan="4"   
                     Text="Import File"                
                     FontSize="30"
                     FontAttributes="Bold"
@@ -32,7 +34,8 @@
                 <Picker 
                     x:Name="Genre"  
                     Grid.Row="1" 
-                    Grid.ColumnSpan="2" 
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3" 
                     Title="Select Genre" 
                     VerticalOptions="CenterAndExpand" 
                     Margin="10,10">
@@ -50,9 +53,22 @@
                         <x:String>Fantasy</x:String>
                     </Picker.Items>
                 </Picker>
+
+                <Button Grid.Row="1" 
+                        Grid.Column="3"
+                        Text="Upload File" 
+                        Clicked="Upload_Clicked" 
+                        FontSize="Small"
+                        Margin="15,15"
+                        TextColor="White"  
+                        BackgroundColor="DeepSkyBlue"                          
+                        HorizontalOptions="Fill"  
+                        VerticalOptions="Center"
+                        CornerRadius="10"/>
+
                 <Label  
                     Grid.Row="2"
-                    Grid.ColumnSpan="2"   
+                    Grid.ColumnSpan="4"   
                     x:Name="lblFilePath"                
                     FontSize="15" 
                     HorizontalOptions="Center" />
@@ -61,6 +77,7 @@
 
                 <Button Grid.Row="3" 
                         Grid.Column="0"
+                        Grid.ColumnSpan="2"
                         Text="Choose File" 
                         Clicked="Choose_Clicked" 
                         FontSize="Small"
@@ -72,9 +89,10 @@
                         CornerRadius="10"/>
 
                 <Button Grid.Row="3" 
-                        Grid.Column="1"
-                        Text="Upload File" 
-                        Clicked="Upload_Clicked" 
+                        Grid.Column="2"
+                        Grid.ColumnSpan="2"
+                        Text="Cancel" 
+                        Clicked="Cancel_Clicked" 
                         FontSize="Small"
                         Margin="15,15"
                         TextColor="White"  

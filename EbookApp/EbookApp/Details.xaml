@@ -5,84 +5,10 @@
 
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            
+
             <Label x:Name="lbl" IsVisible="False"
                 VerticalOptions="CenterAndExpand"
                 HorizontalOptions="CenterAndExpand" />
-            
-            <Grid VerticalOptions="FillAndExpand"
-          Margin="10" IsVisible="False">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="100" />
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="100" />
-                </Grid.ColumnDefinitions>
-
-                
-                <Label Text="Grid"
-               Grid.Column="0"
-               Grid.ColumnSpan="3"
-               Grid.Row="0"
-               FontSize="50"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
-
-                <Label Text="Autosized cell"
-               Grid.Column="0"
-               Grid.Row="1"
-               TextColor="White"
-               BackgroundColor="Blue" />
-
-                <BoxView Color="Silver"
-                 Grid.Column="1"
-                 Grid.Row="1"
-                 HeightRequest="0" />
-
-                <BoxView Color="Teal"
-                 Grid.Column="0"
-                 Grid.Row="2" />
-
-                <Label Text="Leftover space"
-               Grid.Column="1"
-               Grid.Row="2"
-               TextColor="Purple"
-               BackgroundColor="Aqua"
-               HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center" />
-
-                <Label Text="Span two rows (or more if you want)"
-               Grid.Column="2"
-               Grid.Row="1"
-               Grid.RowSpan="2"
-               TextColor="Yellow"
-               BackgroundColor="Navy"
-               HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center" />
-
-                <Label Text="Span 2 columns"
-               Grid.Column="0"
-               Grid.ColumnSpan="2"
-               Grid.Row="3"
-               TextColor="Blue"
-               BackgroundColor="Yellow"
-               HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center" />
-
-                <Label Text="Fixed 100x100"
-               Grid.Column="2"
-               Grid.Row="3"
-               TextColor="Aqua"
-               BackgroundColor="Red"
-               HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center" />
-            </Grid>
 
             <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0" Margin="10,10">
                 <Grid.RowDefinitions>
@@ -97,27 +23,30 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <SearchBar  
                     x:Name="InputSearch"
                     Grid.Row="0" 
-                    Grid.ColumnSpan="5"     
+                    Grid.ColumnSpan="6"     
                     Placeholder="Search"
                     SearchButtonPressed="Search_Clicked"
                     HorizontalOptions="Fill"
                     VerticalOptions="Center"></SearchBar>
 
                 <Label x:Name="Title"
+                    Text=""
                     Grid.Row="1"
-                    Grid.ColumnSpan="5"                    
+                    Grid.ColumnSpan="6"                    
                     FontSize="30"
                     FontAttributes="Bold"
                     HorizontalOptions="Center" />
 
                 <ScrollView Grid.Row="2" 
-                            Grid.ColumnSpan="5">
+                            Grid.ColumnSpan="6">
                     <Label x:Name="Content"
+                    Text=""
                     VerticalOptions="FillAndExpand" 
                     HorizontalOptions="FillAndExpand" />
                 </ScrollView>
@@ -135,7 +64,7 @@
                     CornerRadius="10"/>
 
                 <Button                     
-                    Clicked="Read_Clicked"
+                    Clicked="Play_Clicked"
                     x:Name="PlayBtn"
                     Image="Play.png"
                     Grid.Row="3" 
@@ -182,6 +111,20 @@
                     HorizontalOptions="Fill"
                     VerticalOptions="Center"
                     CornerRadius="10"/>
+
+
+                <Button Grid.Row="3" 
+                    Grid.Column="5"      
+                    x:Name="SettingsBtn"        
+                    Image="Settings.png"                 
+                    Clicked="Settings_Clicked"
+                    Margin="10,10"
+                    TextColor="White"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center"
+                    CornerRadius="10"/>
+
 
 
 

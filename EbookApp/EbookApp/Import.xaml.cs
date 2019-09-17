@@ -16,8 +16,7 @@ using Xamarin.Forms.Xaml;
 
 namespace EbookApp
 {
-
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    //[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Import : ContentPage
     {
         private IXamHelper xamHelper;
@@ -43,15 +42,14 @@ namespace EbookApp
         {
             try
             {
-                fileData = new FileData();
-                fileData = await CrossFilePicker.Current.PickFile(); // Initialization for choosing or selecting the files you want to upload.
-                string filePath = fileData.FilePath; // Getting the file path of the file that you will upload.
-
+                FileData fileData = await CrossFilePicker.Current.PickFile(); // Initialization for choosing or selecting the files you want to upload.
+                
                 if (fileData == null) // Validation if there is no file selected.
                     return; // user cancelled file picking
 
+                string filePath = fileData.FilePath; // Getting the file path of the file that you will upload.
                 string fileName = fileData.FileName; // Getting the file name of the file you will upload.                
-                
+                 
                 await DisplayAlert("File Selected", "Location: " + filePath, "OK");
                 lblFilePath.Text = "File Path: " + filePath;
 
@@ -81,7 +79,7 @@ namespace EbookApp
                     String folderName = Genre.Items[Genre.SelectedIndex];
 
                     IFolder folder = FileSystem.Current.LocalStorage;
-                    bool isExistFolder = await PCLHelper.IsFolderExistAsync(folderName, folder);                
+                    bool isExistFolder = await PCLHelper.IsFolderExistAsync(folderName, folder);
 
                     if (!isExistFolder)
                     {
@@ -132,7 +130,7 @@ namespace EbookApp
 
                         }
                     }
-                    
+
                     if (copyFile)
                     {
                         await DisplayAlert("Success", "Import file successfully!", "OK");
@@ -153,6 +151,10 @@ namespace EbookApp
                 return;
             }
         }
-         
+
+        private void Cancel_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
