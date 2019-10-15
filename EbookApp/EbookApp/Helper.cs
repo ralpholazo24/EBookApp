@@ -162,6 +162,7 @@ namespace EbookApp
         public IFile file { get; set; }
         public string fileName { get; set; }
         public string genre { get; set; }
+        public string countStory { get; set; }
     }
 
 

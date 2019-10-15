@@ -1,4 +1,6 @@
 ﻿using PCLStorage;
+using Plugin.FilePicker;
+using Plugin.FilePicker.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,7 +73,19 @@ namespace EbookApp
                 if (regexItem.IsMatch(folderItem.Name))
                 {
                     listItems list = new listItems();
+                    IList<IFile> countFiles = await folderItem.GetFilesAsync();
+
                     list.fileName = folderItem.Name;
+
+                    if (countFiles.Count() > 1)
+                    {
+                        list.countStory = countFiles.Count() + " Stories";
+                    }
+                    else
+                    {
+                        list.countStory = countFiles.Count() + " Story";
+                    }
+                    
                     list.file = null;
                     li.Add(list);
                 }
@@ -181,9 +195,7 @@ namespace EbookApp
                  cts = null;
             }
 
-        }
-
-
+        } 
 
         protected override void OnDisappearing()
         {
@@ -193,7 +205,6 @@ namespace EbookApp
             {
                 cts.Cancel();
             }
-
         }
     }
      

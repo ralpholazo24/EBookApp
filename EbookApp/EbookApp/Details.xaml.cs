@@ -33,9 +33,8 @@ namespace EbookApp
                 InitializeComponent();
                  
                 CrossTextToSpeech.Current.MaxSpeechInputLength.Equals(-1);
-
+                 
                 document = element;
-                lbl.Text = element.fileName;
                 
                 // Intialization of voice recognition.
                 try
@@ -69,8 +68,8 @@ namespace EbookApp
                     xamHelper = DependencyService.Get<IXamHelper>();
                 }
                 catch (Exception ex)
-                {
-                    lbl.Text = ex.Message;
+                {                    
+                    ex.ToString();
                 }
 
                 try
@@ -91,12 +90,11 @@ namespace EbookApp
                 }
                 catch (Exception ex)
                 {
-                    DisplayAlert("Error:", "Please try again to upload valid file.", "OK");
-                    lbl.Text = ex.Message;
+                    DisplayAlert("Error:", "Please try again to upload valid file.", "OK");                    
                 }
 
-                Title.Text = element.fileName.Replace(".pdf", "").Replace(".txt", "").Replace(".docx", "").Replace(".doc", "");
-                Content.Text = word; // displaying text content in screen.
+                TitleName.Text = element.fileName.Replace(".pdf", "").Replace(".txt", "").Replace(".docx", "").Replace(".doc", "").ToUpper();
+                BookContent.Text = word; // displaying text content in screen.
 
             }
             catch (Exception ex)
@@ -197,7 +195,7 @@ namespace EbookApp
 
             if (isDelete)
             {
-                QuestionItem questionItem = await App.Database.GetItemAsync(document.genre, Title.Text);
+                QuestionItem questionItem = await App.Database.GetItemAsync(document.genre, TitleName.Text);
 
                 if (questionItem != null)
                 {
@@ -277,7 +275,7 @@ namespace EbookApp
         private void OpenYoutube_Clicked(object sender, EventArgs e)
         {
             AnimateButton.animateButton(OpenYoutubeBtn);
-            string title = Title.Text.Replace(" ","+");
+            string title = TitleName.Text.Replace(" ","+");
             string url = $"https://www.youtube.com/results?search_query={title}"; 
              
             Device.OpenUri(new Uri(url)); // open youtube link
@@ -294,14 +292,14 @@ namespace EbookApp
         async void Question_Clicked(object sender, EventArgs e)
         {
             AnimateButton.animateButton(QuestionBtn);
-            QuestionItem questionItem = await App.Database.GetItemAsync(document.genre, Title.Text);
+            QuestionItem questionItem = await App.Database.GetItemAsync(document.genre, TitleName.Text);
 
             if (questionItem == null)
             {
                 questionItem = new QuestionItem
                 {  
                     Genre = document.genre,
-                    Title = Title.Text,
+                    Title = TitleName.Text,
                     QOne = string.Empty,
                     QTwo = string.Empty,
                     QThree = string.Empty
@@ -319,6 +317,8 @@ namespace EbookApp
         }
 
 
+
+
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
@@ -333,5 +333,12 @@ namespace EbookApp
 
         }
 
+        private void BtnSearch_Clicked(object sender, EventArgs e)
+        {
+            if (!InputSearch.IsVisible)
+                InputSearch.IsVisible = true;
+            else
+                InputSearch.IsVisible = false;
+        }
     }
 }

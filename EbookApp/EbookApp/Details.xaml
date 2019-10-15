@@ -1,57 +1,83 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:EbookApp"
              x:Class="EbookApp.Details">
 
     <ContentPage.Content>
-        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 
-            <Label x:Name="lbl" IsVisible="False"
-                VerticalOptions="CenterAndExpand"
-                HorizontalOptions="CenterAndExpand" />
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0" Margin="10,10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
 
-                <SearchBar  
-                    x:Name="InputSearch"
-                    Grid.Row="0" 
-                    Grid.ColumnSpan="6"     
-                    Placeholder="Search"
-                    SearchButtonPressed="Search_Clicked"
-                    HorizontalOptions="Fill"
-                    VerticalOptions="Center"></SearchBar>
+            <StackLayout 
+                Grid.Row="0" 
+                Grid.Column="0" 
+                Grid.ColumnSpan="5" 
+                BackgroundColor="DeepSkyBlue">
+                <Label x:Name="TitleName"
+                        Text=""                        
+                        Margin="10,5,5,5"
+                        FontSize="20"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="StartAndExpand"/>
+            </StackLayout>
 
-                <Label x:Name="Title"
-                    Text=""
-                    Grid.Row="1"
-                    Grid.ColumnSpan="6"                    
-                    FontSize="30"
-                    FontAttributes="Bold"
-                    HorizontalOptions="Center" />
+            <StackLayout 
+                Grid.Row="0" 
+                Grid.Column="5" 
+                BackgroundColor="DeepSkyBlue">
+                <Button 
+                    x:Name="bntSearch"
+                    Clicked="BtnSearch_Clicked"
+                    Image="Search.png"
+                    WidthRequest="60"
+                    BackgroundColor="Transparent"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="StartAndExpand"
+                    Margin="5,0,0,0">
+                </Button>
+            </StackLayout>
 
-                <ScrollView Grid.Row="2" 
-                            Grid.ColumnSpan="6">
-                    <Label x:Name="Content"
-                    Text=""
-                    VerticalOptions="FillAndExpand" 
-                    HorizontalOptions="FillAndExpand" />
+            <StackLayout Grid.Row="1" Grid.ColumnSpan="6">
+                <SearchBar 
+                        IsVisible="False"
+                        x:Name="InputSearch"                    
+                        Placeholder="Search"
+                        SearchButtonPressed="Search_Clicked"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"/>
+            </StackLayout>
+
+
+            <StackLayout Grid.Row="2" Grid.ColumnSpan="6">
+                <ScrollView IsClippedToBounds="True" HorizontalScrollBarVisibility="Always" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="10,0">
+                    <local:PinchToZoomContainer>
+                        <local:PinchToZoomContainer.Content>
+                            <Label x:Name="BookContent" 
+                                TextColor="Black"
+                                Text=""/>
+                        </local:PinchToZoomContainer.Content>
+                    </local:PinchToZoomContainer>
                 </ScrollView>
- 
-                <Button                     
+            </StackLayout>
+
+            <Button                     
                     Clicked="Speak_Clicked"
                     x:Name="SpeakBtn"
                     Image="Voice.png"
@@ -63,7 +89,7 @@
                     VerticalOptions="Center"
                     CornerRadius="10"/>
 
-                <Button                     
+            <Button                     
                     Clicked="Play_Clicked"
                     x:Name="PlayBtn"
                     Image="Play.png"
@@ -75,7 +101,7 @@
                     VerticalOptions="Center"
                     CornerRadius="10"/>
 
-                <Button Grid.Row="3" 
+            <Button Grid.Row="3" 
                     Grid.Column="2"  
                     x:Name="DeleteBtn"  
                     Image="Delete.png"   
@@ -86,8 +112,8 @@
                     HorizontalOptions="Fill"  
                     VerticalOptions="Center"
                     CornerRadius="10"/>
- 
-                 <Button Grid.Row="3" 
+
+            <Button Grid.Row="3" 
                     Grid.Column="3"  
                     x:Name="QuestionBtn"  
                     Image="Question.png"   
@@ -100,7 +126,7 @@
                     CornerRadius="10"/>
 
 
-                <Button Grid.Row="3" 
+            <Button Grid.Row="3" 
                     Grid.Column="4"      
                     x:Name="OpenYoutubeBtn"        
                     Image="Youtube.png"                 
@@ -113,7 +139,7 @@
                     CornerRadius="10"/>
 
 
-                <Button Grid.Row="3" 
+            <Button Grid.Row="3" 
                     Grid.Column="5"      
                     x:Name="SettingsBtn"        
                     Image="Settings.png"                 
@@ -125,11 +151,7 @@
                     VerticalOptions="Center"
                     CornerRadius="10"/>
 
+        </Grid>
 
-
-
-            </Grid>
-
-        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

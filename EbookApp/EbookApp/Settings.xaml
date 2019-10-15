@@ -3,42 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EbookApp.Settings">
     <ContentPage.Content>
-        <StackLayout>
-
-
-
-            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="10,10">
+ 
+            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Label  
-                    Grid.Row="0"
-                    Text="Settings"                
-                    FontSize="30"
-                    FontAttributes="Bold"
-                    HorizontalOptions="Center" />
+            <StackLayout Grid.Row="0" BackgroundColor="DeepSkyBlue">
+                <Label 
+                        Text="Settings"
+                        Margin="10,10"
+                        FontSize="20"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        VerticalOptions="Start" />
+            </StackLayout>
 
-
-                <Label  
+            <Label  
                     Grid.Row="1"                   
-                    FontSize="10" 
-                    HorizontalOptions="Start" />
-
-                <Label  
-                    Grid.Row="2"                   
                     x:Name="lblLanguage"
                     FontSize="10" 
+                    Margin="10,10"
                     HorizontalOptions="Start" />
 
-
-                <Button
-                    Grid.Row="3" 
+            <Button
+                    Grid.Row="2" 
+                    Margin="10,10"
                     Text="Choose Language" 
                     Clicked="Choose_Clicked"                    
                     FontSize="Small"                    
@@ -48,8 +42,9 @@
                     VerticalOptions="Center"
                     CornerRadius="10"/>
 
-                <Button
-                    Grid.Row="4"
+            <Button
+                    Grid.Row="3"
+                    Margin="10,10"
                     x:Name="btnCopyright"
                     Text="Copyright" 
                     Clicked="Copyright_Clicked"                    
@@ -59,9 +54,10 @@
                     HorizontalOptions="Fill"  
                     VerticalOptions="Center"
                     CornerRadius="10"/>
-
-                <Button
-                    Grid.Row="5" 
+                
+            <Button
+                    Grid.Row="4" 
+                    Margin="10,10"
                     x:Name="btnUserGuide"
                     Text="User Guide" 
                     Clicked="UserGuide_Clicked"                    
@@ -73,7 +69,6 @@
                     CornerRadius="10"/>
 
             </Grid>
-
-        </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>

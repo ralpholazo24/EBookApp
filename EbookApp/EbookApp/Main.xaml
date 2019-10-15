@@ -2,11 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:EbookApp"
-             x:Class="EbookApp.Main" BackgroundImage="lat.jpg">
-    <ContentPage.Content>
-        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+             x:Class="EbookApp.Main">
 
-            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0" Margin="10,10">
+    <ContentPage.Content>
+        
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*"/>
@@ -18,35 +18,55 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Text="E-KWENTO"
-                    Grid.Row="0"
-                    Grid.ColumnSpan="3"                    
-                    FontSize="30"
+            <StackLayout 
+                BackgroundColor="DeepSkyBlue" 
+                Grid.Row="0"
+                Grid.Column="0" 
+                Grid.ColumnSpan="2" >
+                <Label Text="E-KWENTO"                    
+                    Margin="10,10"
+                    FontSize="20"
                     FontAttributes="Bold"
-                    TextColor="DeepSkyBlue"
-                    HorizontalOptions="Center" />
+                    TextColor="White"
+                    HorizontalOptions="Start" />
+            </StackLayout>
 
-                <ScrollView Grid.Row="1" Grid.ColumnSpan="3">
-                    <ListView x:Name="lst" 
+            <StackLayout 
+                BackgroundColor="DeepSkyBlue" 
+                Grid.Row="0"
+                Grid.Column="2">
+                <Image                     
+                    Margin="10,10"
+                    HorizontalOptions="End" 
+                    WidthRequest="30" 
+                    Source="app_logo.png" >
+                </Image>
+            </StackLayout>
+
+
+            <ScrollView Grid.Row="1" Grid.ColumnSpan="3">
+                    <ListView x:Name="lst"                              
                               ItemSelected="lst_ItemSelected" 
                               SelectionMode="Single"
                               VerticalOptions="FillAndExpand" 
                               HorizontalOptions="FillAndExpand">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <TextCell Text="{Binding fileName}" TextColor="Black" />
+                                <TextCell Text="{Binding fileName}" 
+                                          TextColor="Black"                                          
+                                          Detail="{Binding countStory}"
+                                          DetailColor="DeepSkyBlue"/>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                </ScrollView>
+             </ScrollView>
  
                 <Button  
                     Grid.Row="2"
                     Grid.Column="0"   
                     Image="Voice.png"
                     Clicked="Speak_Clicked"  
-                    x:Name="SpeakBtn"
-                    Margin="10,10" 
+                    x:Name="SpeakBtn"                    
                     BackgroundColor="Transparent"                          
                     HorizontalOptions="Fill"  
                     VerticalOptions="Center"
@@ -57,8 +77,7 @@
                     Grid.Column="1"   
                     Image="ImportFile.png"
                     Clicked="Import_Clicked"  
-                    x:Name="ImportBtn"
-                    Margin="10,10" 
+                    x:Name="ImportBtn"                    
                     BackgroundColor="Transparent"                          
                     HorizontalOptions="Fill"  
                     VerticalOptions="Center"
@@ -69,8 +88,7 @@
                     Grid.Column="2"
                     x:Name="SettingsBtn" 
                     Image="Settings.png"
-                    Clicked="Settings_Clicked" 
-                    Margin="10,10" 
+                    Clicked="Settings_Clicked"                    
                     BackgroundColor="Transparent"                          
                     HorizontalOptions="Fill"  
                     VerticalOptions="Center"
@@ -78,7 +96,6 @@
 
                 
             </Grid>
-
-        </StackLayout>
+         
     </ContentPage.Content>
 </ContentPage>

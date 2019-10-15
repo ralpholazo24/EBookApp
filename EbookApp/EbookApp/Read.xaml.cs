@@ -50,8 +50,8 @@ namespace EbookApp
                         {
                             listItems list = new listItems();
                             list.file = item;
-                            list.fileName = item.Name.Replace(".pdf", "").Replace(".txt", "").Replace(".docx", "").Replace(".doc", "");
-                            list.genre = _genre;
+                            list.fileName = item.Name.Replace(".pdf", "").Replace(".txt", "").Replace(".docx", "").Replace(".doc", "").ToUpper();
+                            list.genre = _genre;                            
                             li.Add(list);
                         }
                     }

@@ -2,6 +2,8 @@
 using PCLStorage;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
+//using LeoJHarris.FilePicker.Abstractions;
+//using LeoJHarris.FilePicker;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +18,7 @@ using Xamarin.Forms.Xaml;
 
 namespace EbookApp
 {
-    //[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Import : ContentPage
     {
         private IXamHelper xamHelper;
@@ -41,18 +43,14 @@ namespace EbookApp
         private async void Choose_Clicked(object sender, EventArgs e)
         {
             try
-            {
-                FileData fileData = await CrossFilePicker.Current.PickFile(); // Initialization for choosing or selecting the files you want to upload.
-                
-                if (fileData == null) // Validation if there is no file selected.
-                    return; // user cancelled file picking
+            {                   
+                fileData = await CrossFilePicker.Current.PickFile();
 
-                string filePath = fileData.FilePath; // Getting the file path of the file that you will upload.
-                string fileName = fileData.FileName; // Getting the file name of the file you will upload.                
+                if (fileData == null) 
+                    return;                                 
                  
-                await DisplayAlert("File Selected", "Location: " + filePath, "OK");
-                lblFilePath.Text = "File Path: " + filePath;
-
+                await DisplayAlert("File Selected", "Location: " + fileData.FilePath, "OK");
+                lblFilePath.Text = "File Path: " + fileData.FilePath;
             }
             catch (Exception ex)
             {
@@ -63,7 +61,7 @@ namespace EbookApp
         private async void Upload_Clicked(object sender, EventArgs e)
         {
             try
-            {
+            {                
                 if (fileData == null)
                 {
                     await DisplayAlert("", "Please select file to upload.", "OK");
@@ -90,23 +88,37 @@ namespace EbookApp
                         folder = await folder.GetFolderAsync(folderName);
                     }
 
-                    bool isExistFile = await PCLHelper.IsFileExistAsync(fileData.FileName, folder);
-
-                    IFile file = await folder.GetFileAsync(fileData.FilePath);
-
+                    bool isExistFile = await PCLHelper.IsFileExistAsync(fileData.FileName, folder);                    
                     bool copyFile = false;
+                    
                     if (isExistFile)
                     {
+                        
                         // Validation if existing file
-                        await PCLHelper.DeleteFile(fileData.FileName, folder);
-                        copyFile = await PCLHelper.CopyFileTo(file, folder);
+                        await PCLHelper.DeleteFile(fileData.FileName, folder);                        
+                        try
+                        {
+                            IFile file = await folder.GetFileAsync(fileData.FilePath);
+                            copyFile = await PCLHelper.CopyFileTo(file, folder);
+
+                            using (var fs = new FileStream(folder.Path, FileMode.Create, System.IO.FileAccess.Write))
+                            {
+                                fs.Write(fileData.DataArray, 0, fileData.DataArray.Length);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Exception caught in process: {0}", ex);
+                        }
                     }
                     else
                     {
                         try
                         {
-                            // Getting text content from pdf, word and text file.                    
-                            var filepath = file.Path;
+ 
+                            var filepath = fileData.FilePath;// file.Path;
+                            IFile file = await folder.GetFileAsync(fileData.FilePath);                            
+
                             string word = ConvertText.TextFile(filepath); // By default is text.
 
                             if (filepath.Contains(".pdf")) // if the file type is pdf.
@@ -126,18 +138,17 @@ namespace EbookApp
                         {
                             await DisplayAlert("Error:", "Please try again to upload a valid file. The file must not contain images and any special symbols.", "OK");
                             ex.ToString();
+                            fileData = null;
                             lblFilePath.Text = string.Empty;
-
                         }
                     }
 
                     if (copyFile)
                     {
                         await DisplayAlert("Success", "Import file successfully!", "OK");
-                        fileData = new FileData();
+                        fileData = null;
                         Genre.SelectedIndex = -1;
                         lblFilePath.Text = string.Empty;
-
                     }
 
                 }
@@ -154,7 +165,9 @@ namespace EbookApp
 
         private void Cancel_Clicked(object sender, EventArgs e)
         {
-
+            fileData = new FileData();
+            Genre.SelectedIndex = -1;
+            lblFilePath.Text = string.Empty;
         }
     }
 }
