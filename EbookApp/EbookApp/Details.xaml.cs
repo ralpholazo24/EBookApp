@@ -88,7 +88,7 @@ namespace EbookApp
                         word = xamHelper.WordToText(filepath);
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
                     DisplayAlert("Error:", "Please try again to upload valid file.", "OK");                    
                 }
@@ -289,26 +289,26 @@ namespace EbookApp
             Device.OpenUri(new Uri(url)); // open youtube link
         }
 
-        async void Question_Clicked(object sender, EventArgs e)
-        {
-            AnimateButton.animateButton(QuestionBtn);
-            QuestionItem questionItem = await App.Database.GetItemAsync(document.genre, TitleName.Text);
+        //async void Question_Clicked(object sender, EventArgs e)
+        //{
+        //    AnimateButton.animateButton(QuestionBtn);
+        //    QuestionItem questionItem = await App.Database.GetItemAsync(document.genre, TitleName.Text);
 
-            if (questionItem == null)
-            {
-                questionItem = new QuestionItem
-                {  
-                    Genre = document.genre,
-                    Title = TitleName.Text,
-                    QOne = string.Empty,
-                    QTwo = string.Empty,
-                    QThree = string.Empty
-                };
-            }
+        //    if (questionItem == null)
+        //    {
+        //        questionItem = new QuestionItem
+        //        {  
+        //            Genre = document.genre,
+        //            Title = TitleName.Text,
+        //            QOne = string.Empty,
+        //            QTwo = string.Empty,
+        //            QThree = string.Empty
+        //        };
+        //    }
              
-            await Navigation.PushModalAsync(new Question(questionItem)); // Use to navigate question
+        //    await Navigation.PushModalAsync(new Question(questionItem)); // Use to navigate question
              
-        }
+        //}
 
         async void Settings_Clicked(object sender, EventArgs e)
         {

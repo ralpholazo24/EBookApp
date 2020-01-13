@@ -91,7 +91,7 @@ namespace EbookApp
                 }
             }
 
-            lst.ItemsSource = li; // Passing item source to the list view
+            lst.ItemsSource = li.OrderBy(e => e.fileName); // Passing item source to the list view
 
         }
 

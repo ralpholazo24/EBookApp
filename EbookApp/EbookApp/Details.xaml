@@ -19,14 +19,13 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
 
             <StackLayout 
                 Grid.Row="0" 
                 Grid.Column="0" 
-                Grid.ColumnSpan="5" 
+                Grid.ColumnSpan="4" 
                 BackgroundColor="DeepSkyBlue">
                 <Label x:Name="TitleName"
                         Text=""                        
@@ -40,7 +39,7 @@
 
             <StackLayout 
                 Grid.Row="0" 
-                Grid.Column="5" 
+                Grid.Column="4" 
                 BackgroundColor="DeepSkyBlue">
                 <Button 
                     x:Name="bntSearch"
@@ -54,7 +53,7 @@
                 </Button>
             </StackLayout>
 
-            <StackLayout Grid.Row="1" Grid.ColumnSpan="6">
+            <StackLayout Grid.Row="1" Grid.ColumnSpan="5">
                 <SearchBar 
                         IsVisible="False"
                         x:Name="InputSearch"                    
@@ -65,7 +64,7 @@
             </StackLayout>
 
 
-            <StackLayout Grid.Row="2" Grid.ColumnSpan="6">
+            <StackLayout Grid.Row="2" Grid.ColumnSpan="5">
                 <ScrollView IsClippedToBounds="True" HorizontalScrollBarVisibility="Always" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="10,0">
                     <local:PinchToZoomContainer>
                         <local:PinchToZoomContainer.Content>
@@ -113,7 +112,7 @@
                     VerticalOptions="Center"
                     CornerRadius="10"/>
 
-            <Button Grid.Row="3" 
+            <!--<Button Grid.Row="3" 
                     Grid.Column="3"  
                     x:Name="QuestionBtn"  
                     Image="Question.png"   
@@ -123,11 +122,11 @@
                     BackgroundColor="Transparent"                         
                     HorizontalOptions="Fill"  
                     VerticalOptions="Center"
-                    CornerRadius="10"/>
+                    CornerRadius="10"/>-->
 
 
             <Button Grid.Row="3" 
-                    Grid.Column="4"      
+                    Grid.Column="3"      
                     x:Name="OpenYoutubeBtn"        
                     Image="Youtube.png"                 
                     Clicked="OpenYoutube_Clicked"
@@ -140,7 +139,7 @@
 
 
             <Button Grid.Row="3" 
-                    Grid.Column="5"      
+                    Grid.Column="4"      
                     x:Name="SettingsBtn"        
                     Image="Settings.png"                 
                     Clicked="Settings_Clicked"

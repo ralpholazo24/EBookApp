@@ -50,7 +50,10 @@ namespace EbookApp
                         {
                             listItems list = new listItems();
                             list.file = item;
-                            list.fileName = item.Name.Replace(".pdf", "").Replace(".txt", "").Replace(".docx", "").Replace(".doc", "").ToUpper();
+
+                            var fileName = item.Name.Replace(".pdf", "").Replace(".txt", "").Replace(".docx", "").Replace(".doc", "").ToUpper();
+                            list.fileName = StringExtensions.TitleCaseString(fileName);
+
                             list.genre = _genre;                            
                             li.Add(list);
                         }
@@ -58,7 +61,7 @@ namespace EbookApp
                 }
             }
 
-            lst.ItemsSource = li; // Passing item source to the list view  
+            lst.ItemsSource = li.OrderBy(e => e.fileName); // Passing item source to the list view  
             Genre.Text = _genre;
 
         }

@@ -20,9 +20,39 @@
                         VerticalOptions="Start" />
             </StackLayout>
 
-            <Label Grid.Row="1" Text="User Guide"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <Label 
+                    Grid.Row="1" 
+                    Margin="10,10"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand">
+                <Label.Text>How to use e-Kwento?
+
+*Import Book
+>To import e-book to e-Kwento press the import button (pic. ng import)
+>Select e-book genre
+>Choose file from your phone press choose file button(pic. ng choose file button)
+>Upload file then press ok.
+
+*Open e-Book
+>Select booklist to open then choose e-book you prefer to read.
+Here you can choose between reading the e-book manually or the e-Kwento would. Read the content of the e-book for you.
+
+•Manual Reading Mode
+>Read the content of the by scrolling the phone
+    •Reading Model
+>Press the read/play button (pic. ng read button)
+
+*Voice Command
+>To use the voice command press the speak button (pic. ng speak button), then speak 'play or read'
+
+*Settings
+Here you can select which language to use by the e-Kwento.
+>Press Choose language button then select language to use.
+
+*Watch Related Videos
+> To watch related videos of the e-book you have read press the video button (pic. ng video button) then watch videos.</Label.Text>
+            </Label>
 
         </Grid>
     </ContentPage.Content>

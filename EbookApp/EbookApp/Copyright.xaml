@@ -20,9 +20,19 @@
                         VerticalOptions="Start" />
             </StackLayout>
 
-            <Label Grid.Row="1" Text="Copyright"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <Label 
+                    Grid.Row="1"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    Margin="10,10">
+                <Label.Text>Copyright © 2019-2020 All Rights Reserved.
+
+The work ('Works') herein refer to all files in the software and program of the application are developed and owned by Melissa Stephany, and Clinton. The book contained in the application are not exclusive property of the system. Any book that is uploaded by the user is not controlled by the system and shall be subject to such writer/authors copyright terms and condition.
+
+The end user of this application is merely granted to rightfully use the system.
+                </Label.Text>
+            </Label>
 
         </Grid>
     </ContentPage.Content>
